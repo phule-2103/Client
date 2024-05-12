@@ -11,16 +11,20 @@ public interface ApiPath {
     String TOUR_DELETE = "/tour/delete";
 
     // Tour Detail
-    String TOUR_DETAIL_CREATE = "/tour-detail/create";
-    String TOUR_DETAIL_FIND_ALL = "/tour-detail/find-all";
-    String TOUR_DETAIL_FIND_BY_ID = "/tour-detail/find-by-id";
-    String TOUR_DETAIL_UPDATE = "/tour-detail/update";
-    String TOUR_DETAIL_DELETE = "/tour-detail/delete";
+    String TOUR_DETAIL_CREATE = API + "/tour-detail/create";
+    String TOUR_DETAIL_FIND_ALL = API + "/tour-detail/find-all";
+    String TOUR_DETAIL_FIND_BY_ID = API + "/tour-detail/find-by-id";
+    String TOUR_DETAIL_UPDATE = API + "/tour-detail/update";
+    String TOUR_DETAIL_DELETE = API + "/tour-detail/delete";
 
 
     //cart
-    String CART_CREATE ="/cart/create";
-    String CART_DELETE ="/cart/Delete";
-    String Cart_FIND_ALL="cart/find_all";
+    String CART_CREATE = API + "/cart/create";
+    String CART_FIND_ALL= API + "/cart/find_all";
+    String CART_FIND_BY_ID = API + "/cart/find-by-id";
+    String CART_UPDATE = API + "/cart/update";
+    String CART_DELETE = API + "/cart/delete";
+
+
 
 }

@@ -15,12 +15,8 @@ import java.util.Set;
 public class ShoppingCartDTO {
     private Long id;
 
-    private Tour tour;
-
     private double totalPrice;
 
     private int totalItems;
-
-    private Set<CartItemDTO> cartItems;
 
 }

@@ -9,7 +9,6 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-// aaa
 @NoArgsConstructor
 @Setter
 @Getter
@@ -20,31 +19,28 @@ import java.util.List;
 public class Tour extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTour")
+    @Column
     private int idTour;
 
-    @Column(name="tourCode")
+    @Column
     private String tourCode;
 
-    @Column(name="tourName")
+    @Column
     private String tourName;
 
-    @Column(name="maximumSize")
+    @Column
     private String maximumSize;
 
-    @Column(name="description")
+    @Column
     private String description;
 
-    @Column(name="imageUrl")
+    @Column
     private String imageUrl;
 
-    @Column(name="uuid")
+    @Column
     private String uuid;
 
-    @Column(name="Url")
+    @Column
     private String Url;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
 }

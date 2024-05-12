@@ -19,14 +19,17 @@ public class CartItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "shopping_cart_id", referencedColumnName = "shopping_cart_id")
+    @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
     private ShoppingCart cart;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tour_id", referencedColumnName = "tour_id")
-    private Tour tour;
+
+    @Column
     private int quantity;
+    @Column
     private double unitPrice;
 
+    /*    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tour", referencedColumnName = "id_tour")
+    private Tour tour;*/
 
 }

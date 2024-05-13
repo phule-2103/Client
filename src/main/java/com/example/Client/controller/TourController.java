@@ -20,7 +20,7 @@ public class TourController {
         TourDTO tourDTO = service.create(entity);
         return new ResponseEntity<>(tourDTO, HttpStatus.CREATED);
     }
-    @GetMapping(ApiPath. TOUR_FIND_ALL)
+    @GetMapping(ApiPath.TOUR_FIND_ALL)
     public ResponseEntity<?> findAll(){
         TourResponseDTO response = new TourResponseDTO();
         try{
@@ -35,9 +35,19 @@ public class TourController {
         }
     }
     @GetMapping(ApiPath.TOUR_FIND_BY_ID + "/{idTour}")
-    public ResponseEntity<TourDTO> findById(@PathVariable("idTour") int idTour){
-        TourDTO tourDTO = service.getByID(idTour);
-        return new ResponseEntity<>(tourDTO, HttpStatus.OK);
+    public ResponseEntity<?> findById(@PathVariable("idTour") int idTour){
+        TourResponseDTO response = new TourResponseDTO();
+        try{
+            TourDTO tourDTO = service.getByID(idTour);
+            response.setMessage("Successfully get tour by id");
+            response.setErrorCode(200);
+            response.setData(tourDTO);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch (Exception e){
+            response.setMessage("Error when get tour by id , Please try again");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
     @PutMapping(ApiPath.TOUR_UPDATE + "/{idTour}")
     public ResponseEntity<TourDTO> update(@PathVariable("idTour") int idTour, @RequestBody TourDTO entity){

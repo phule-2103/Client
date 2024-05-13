@@ -1,6 +1,7 @@
 package com.example.Client.dto.cart;
 
 import com.example.Client.entity.Tour;
+import com.example.Client.entity.cart.CartItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,7 @@ public class ShoppingCartDTO {
     private double totalPrice;
 
     private int totalItems;
+
+    private Set<CartItem> cartItems;
 
 }

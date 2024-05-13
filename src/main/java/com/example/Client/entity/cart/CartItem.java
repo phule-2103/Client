@@ -1,6 +1,7 @@
 package com.example.Client.entity.cart;
 
 import com.example.Client.entity.Tour;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,18 +19,19 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
-    private ShoppingCart cart;
-
-
     @Column
     private int quantity;
     @Column
     private double unitPrice;
 
-    /*    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_tour", referencedColumnName = "id_tour")
-    private Tour tour;*/
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
+    private ShoppingCart cart;
+
+    /*@JsonIgnore*/
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tour", referencedColumnName = "idTour")
+    private Tour tour;
 
 }

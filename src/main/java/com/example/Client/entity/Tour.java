@@ -1,5 +1,6 @@
 package com.example.Client.entity;
 
+import com.example.Client.entity.cart.CartItem;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,11 +16,10 @@ import java.util.List;
 @Entity
 @Table(name="tour")
 @Component
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idTour")
+/*@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idTour")*/
 public class Tour extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private int idTour;
 
     @Column
@@ -40,7 +40,7 @@ public class Tour extends BaseEntity{
     @Column
     private String uuid;
 
-    @Column
-    private String Url;
-
+    @JsonIgnore
+    @OneToOne(mappedBy = "tour")
+    private CartItem cartItem;
 }

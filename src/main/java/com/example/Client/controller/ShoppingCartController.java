@@ -3,6 +3,7 @@ import com.example.Client.consts.ApiPath;
 import com.example.Client.dto.TourDTO;
 import com.example.Client.dto.cart.ShoppingCartDTO;
 import com.example.Client.response.ShoppingCartResponseDTO;
+import com.example.Client.response.TourResponseDTO;
 import com.example.Client.service.Impl.ShoppingCartServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,20 @@ import java.util.List;
 public class ShoppingCartController {
     private ShoppingCartServiceImpl service;
     @PostMapping(ApiPath.CART_CREATE)
-    public ResponseEntity<ShoppingCartDTO> create(@RequestBody ShoppingCartDTO entity){
-        ShoppingCartDTO shoppingCartDTO = service.create(entity);
-        return new ResponseEntity<>(shoppingCartDTO, HttpStatus.CREATED);
+    public ResponseEntity<?> create(@RequestBody ShoppingCartDTO entity){
+        ShoppingCartResponseDTO response = new ShoppingCartResponseDTO();
+        try{
+            ShoppingCartDTO cart = service.create(entity);
+            response.setMessage("Successfully create new cart");
+            response.setErrorCode(200);
+            response.setData(cart);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch (Exception e){
+            response.setMessage("Error when create cart , Please try again");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @GetMapping(ApiPath.CART_FIND_ALL)
     public ResponseEntity<?> findAll(){
         ShoppingCartResponseDTO response = new ShoppingCartResponseDTO();
@@ -35,6 +46,7 @@ public class ShoppingCartController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping(ApiPath.CART_FIND_BY_ID + "/{id}")
     public ResponseEntity<ShoppingCartDTO> findById(@PathVariable("id") Long id){
         ShoppingCartDTO shoppingCartDTO = service.getByID(id);

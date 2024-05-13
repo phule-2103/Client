@@ -1,5 +1,7 @@
 package com.example.Client.dto;
 
+import com.example.Client.entity.cart.CartItem;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +27,6 @@ public class TourDTO {
 
     private String uuid;
 
-    private String Url;
-
-
+    private CartItem cartItem;
 }
 
